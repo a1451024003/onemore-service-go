@@ -1,0 +1,1409 @@
+{
+    "swagger": "2.0",
+    "info": {
+        "title": "beego Test API",
+        "description": "beego has a very cool tools to autogenerate documents for your API",
+        "version": "1.0.0",
+        "termsOfService": "http://beego.me/",
+        "contact": {
+            "email": "astaxie@gmail.com"
+        },
+        "license": {
+            "name": "Apache 2.0",
+            "url": "http://www.apache.org/licenses/LICENSE-2.0.html"
+        }
+    },
+    "basePath": "/api/v2/onemore",
+    "paths": {
+        "/app/upload/": {
+            "post": {
+                "tags": [
+                    "app/upload"
+                ],
+                "description": "上传bs64",
+                "operationId": "UploadController.上传bs64",
+                "parameters": [
+                    {
+                        "in": "query",
+                        "name": "file",
+                        "description": "bs64图片字符串",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "0": {
+                        "description": "{json} JSONStruct"
+                    }
+                }
+            }
+        },
+        "/application_download/": {
+            "get": {
+                "tags": [
+                    "application_download"
+                ],
+                "description": "get 应用下载-列表",
+                "operationId": "ApplicationDownloadController.GetAll",
+                "parameters": [
+                    {
+                        "in": "query",
+                        "name": "type",
+                        "description": "类型：1儿歌，2游戏",
+                        "required": true,
+                        "type": "integer",
+                        "format": "int64"
+                    },
+                    {
+                        "in": "query",
+                        "name": "page",
+                        "description": "页数",
+                        "type": "integer",
+                        "format": "int64"
+                    },
+                    {
+                        "in": "query",
+                        "name": "per_page",
+                        "description": "每页显示条数",
+                        "type": "integer",
+                        "format": "int64"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "schema": {
+                            "$ref": "#/definitions/models.ApplicationDownload"
+                        }
+                    },
+                    "403": {
+                        "description": ""
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "application_download"
+                ],
+                "description": "create 应用下载-添加",
+                "operationId": "ApplicationDownloadController.Create",
+                "parameters": [
+                    {
+                        "in": "formData",
+                        "name": "icon",
+                        "description": "图标",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "in": "formData",
+                        "name": "name",
+                        "description": "名称",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/.name"
+                        }
+                    },
+                    {
+                        "in": "formData",
+                        "name": "download_url",
+                        "description": "下载地址",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/.download_url"
+                        }
+                    },
+                    {
+                        "in": "formData",
+                        "name": "type",
+                        "description": "类型",
+                        "required": true,
+                        "type": "integer",
+                        "format": "int64"
+                    },
+                    {
+                        "in": "formData",
+                        "name": "package_name",
+                        "description": "应用包名",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "in": "formData",
+                        "name": "version_code",
+                        "description": "应用版本号",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "in": "formData",
+                        "name": "size",
+                        "description": "应用apk包大小（MB）",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "201": {
+                        "description": "",
+                        "schema": {
+                            "$ref": "#/definitions/models.ApplicationDownload"
+                        }
+                    },
+                    "403": {
+                        "description": "body is empty"
+                    }
+                }
+            }
+        },
+        "/application_download/{id}": {
+            "get": {
+                "tags": [
+                    "application_download"
+                ],
+                "description": "get ApplicationDownload by id",
+                "operationId": "ApplicationDownloadController.GetOne",
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "id",
+                        "description": "The key for staticblock",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "schema": {
+                            "$ref": "#/definitions/models.ApplicationDownload"
+                        }
+                    },
+                    "403": {
+                        "description": ":id is empty"
+                    }
+                }
+            },
+            "put": {
+                "tags": [
+                    "application_download"
+                ],
+                "description": "update 应用下载-修改",
+                "operationId": "ApplicationDownloadController.Put",
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "id",
+                        "description": "应用编号",
+                        "required": true,
+                        "type": "integer",
+                        "format": "int64"
+                    },
+                    {
+                        "in": "formData",
+                        "name": "icon",
+                        "description": "图标",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "in": "formData",
+                        "name": "name",
+                        "description": "名称",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/.name"
+                        }
+                    },
+                    {
+                        "in": "formData",
+                        "name": "download_url",
+                        "description": "下载地址",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/.download_url"
+                        }
+                    },
+                    {
+                        "in": "formData",
+                        "name": "type",
+                        "description": "类型",
+                        "required": true,
+                        "type": "integer",
+                        "format": "int64"
+                    },
+                    {
+                        "in": "formData",
+                        "name": "package_name",
+                        "description": "应用包名",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "in": "formData",
+                        "name": "version_code",
+                        "description": "应用版本号",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "in": "formData",
+                        "name": "size",
+                        "description": "应用apk包大小（MB）",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "schema": {
+                            "$ref": "#/definitions/models.ApplicationDownload"
+                        }
+                    },
+                    "403": {
+                        "description": ":id is not int"
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "application_download"
+                ],
+                "description": "delete 应用下载-删除",
+                "operationId": "ApplicationDownloadController.Delete",
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "id",
+                        "description": "应用编号",
+                        "required": true,
+                        "type": "integer",
+                        "format": "int64"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "{string} delete success!"
+                    },
+                    "403": {
+                        "description": "id is empty"
+                    }
+                }
+            }
+        },
+        "/chcp/": {
+            "get": {
+                "tags": [
+                    "chcp"
+                ],
+                "description": "获取全部信息",
+                "operationId": "HotChcpController.GetAll",
+                "responses": {
+                    "0": {
+                        "description": "",
+                        "schema": {
+                            "$ref": "#/definitions/models.HotChcp"
+                        }
+                    },
+                    "1001": {
+                        "description": "获取失败"
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "chcp"
+                ],
+                "description": "新增热更信息",
+                "operationId": "HotChcpController.Create",
+                "responses": {
+                    "0": {
+                        "description": "",
+                        "schema": {
+                            "$ref": "#/definitions/models.HotChcp"
+                        }
+                    },
+                    "1003": {
+                        "description": "添加失败"
+                    }
+                }
+            }
+        },
+        "/chcp/GetNewInfo": {
+            "get": {
+                "tags": [
+                    "chcp"
+                ],
+                "description": "获取最新",
+                "operationId": "HotChcpController.GetNew",
+                "responses": {
+                    "0": {
+                        "description": "",
+                        "schema": {
+                            "$ref": "#/definitions/models.HotChcp"
+                        }
+                    },
+                    "1001": {
+                        "description": "获取最新热更信息失败"
+                    }
+                }
+            }
+        },
+        "/chcp/getNew": {
+            "get": {
+                "tags": [
+                    "chcp"
+                ],
+                "description": "获取最新",
+                "operationId": "HotChcpController.GetNew",
+                "responses": {
+                    "0": {
+                        "description": "",
+                        "schema": {
+                            "$ref": "#/definitions/models.HotChcp"
+                        }
+                    },
+                    "1001": {
+                        "description": "获取最新热更信息失败"
+                    }
+                }
+            }
+        },
+        "/chcp/{id}": {
+            "get": {
+                "tags": [
+                    "chcp"
+                ],
+                "description": "获取详情",
+                "operationId": "HotChcpController.GetOne",
+                "responses": {
+                    "0": {
+                        "description": "",
+                        "schema": {
+                            "$ref": "#/definitions/models.HotChcp"
+                        }
+                    },
+                    "1001": {
+                        "description": "获取详情失败"
+                    }
+                }
+            },
+            "put": {
+                "tags": [
+                    "chcp"
+                ],
+                "description": "编辑热更信息",
+                "operationId": "HotChcpController.Put",
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "id",
+                        "description": "The id you want to update",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "description": "body for Hot_chap content",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/models.HotChcp"
+                        }
+                    }
+                ],
+                "responses": {
+                    "0": {
+                        "description": "",
+                        "schema": {
+                            "$ref": "#/definitions/models.HotChcp"
+                        }
+                    },
+                    "1003": {
+                        "description": "编辑失败"
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "chcp"
+                ],
+                "description": "删除热更信息",
+                "operationId": "HotChcpController.Delete",
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "id",
+                        "description": "The id you want to delete",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "0": {
+                        "description": "{string} delete success!"
+                    },
+                    "1002": {
+                        "description": "热更信息删除失败"
+                    },
+                    "1003": {
+                        "description": "热更信息不存在"
+                    }
+                }
+            }
+        },
+        "/codes/": {
+            "get": {
+                "tags": [
+                    "codes"
+                ]
+            },
+            "post": {
+                "tags": [
+                    "codes"
+                ]
+            }
+        },
+        "/codes/{id}": {
+            "get": {
+                "tags": [
+                    "codes"
+                ]
+            },
+            "put": {
+                "tags": [
+                    "codes"
+                ]
+            },
+            "delete": {
+                "tags": [
+                    "codes"
+                ]
+            }
+        },
+        "/conf/": {
+            "get": {
+                "tags": [
+                    "conf"
+                ],
+                "description": "读取数据库配置",
+                "operationId": "SystemController.读取数据库配置",
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "type",
+                        "description": "环境 1.local 2.dev 3.test 4.prod",
+                        "required": true,
+                        "type": "integer",
+                        "format": "int64"
+                    },
+                    {
+                        "in": "path",
+                        "name": "service",
+                        "description": "数据库服务",
+                        "required": true,
+                        "type": "integer",
+                        "format": "int64"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "schema": {
+                            "$ref": "#/definitions/.Config"
+                        }
+                    },
+                    "403": {
+                        "description": ":id is empty"
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "conf"
+                ],
+                "description": "数据库配置",
+                "operationId": "SystemController.数据库配置",
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "config",
+                        "description": "配置",
+                        "required": true,
+                        "type": "integer",
+                        "format": "int64"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "schema": {
+                            "$ref": "#/definitions/.Config"
+                        }
+                    },
+                    "403": {
+                        "description": ":id is empty"
+                    }
+                }
+            }
+        },
+        "/notice/": {
+            "get": {
+                "tags": [
+                    "notice"
+                ],
+                "description": "通知列表",
+                "operationId": "NoticeController.Get All 通知列表",
+                "responses": {
+                    "0": {
+                        "description": "",
+                        "schema": {
+                            "$ref": "#/definitions/models.Notice"
+                        }
+                    },
+                    "403": {
+                        "description": ""
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "notice"
+                ],
+                "description": "发布通知",
+                "operationId": "NoticeController.Post 发布通知",
+                "parameters": [
+                    {
+                        "in": "body",
+                        "name": "body",
+                        "description": "body for Notice content",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/models.Notice"
+                        }
+                    }
+                ],
+                "responses": {
+                    "0": {
+                        "description": "{int} models.Notice"
+                    },
+                    "403": {
+                        "description": "body is empty"
+                    }
+                }
+            }
+        },
+        "/notice/del_notice": {
+            "post": {
+                "tags": [
+                    "notice"
+                ],
+                "description": "删除通知",
+                "operationId": "NoticeController.删除通知",
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "id",
+                        "description": "通知ID",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "0": {
+                        "description": "{string} delete success!"
+                    },
+                    "403": {
+                        "description": "id is empty"
+                    }
+                }
+            }
+        },
+        "/notice/notice": {
+            "get": {
+                "tags": [
+                    "notice"
+                ],
+                "description": "系统通知列表",
+                "operationId": "NoticeController.系统通知列表",
+                "responses": {
+                    "0": {
+                        "description": "",
+                        "schema": {
+                            "$ref": "#/definitions/models.Notice"
+                        }
+                    },
+                    "403": {
+                        "description": ""
+                    }
+                }
+            }
+        },
+        "/notice/notice_oms/{id}": {
+            "delete": {
+                "tags": [
+                    "notice"
+                ],
+                "description": "oms删除通知",
+                "operationId": "NoticeController.oms删除通知",
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "id",
+                        "description": "通知ID",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "0": {
+                        "description": "{string} delete success!"
+                    },
+                    "403": {
+                        "description": "id is empty"
+                    }
+                }
+            }
+        },
+        "/notice/{id}": {
+            "get": {
+                "tags": [
+                    "notice"
+                ],
+                "description": "通知详情",
+                "operationId": "NoticeController.通知详情",
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "id",
+                        "description": "通知ID",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "0": {
+                        "description": "",
+                        "schema": {
+                            "$ref": "#/definitions/models.Notice"
+                        }
+                    },
+                    "403": {
+                        "description": ":id is empty"
+                    }
+                }
+            }
+        },
+        "/oss/": {
+            "get": {
+                "tags": [
+                    "oss"
+                ],
+                "description": "oss直传token",
+                "operationId": "OssController.oss直传token",
+                "parameters": [
+                    {
+                        "in": "query",
+                        "name": "path",
+                        "description": "路径",
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "0": {
+                        "description": "{json} JSONStruct"
+                    }
+                }
+            }
+        },
+        "/oss/oss": {
+            "get": {
+                "tags": [
+                    "oss"
+                ],
+                "description": "获取oss配置",
+                "operationId": "OssController.获取oss配置",
+                "responses": {
+                    "0": {
+                        "description": "{string} success"
+                    }
+                }
+            }
+        },
+        "/oss/sts": {
+            "get": {
+                "tags": [
+                    "oss"
+                ],
+                "description": "获取sts",
+                "operationId": "OssController.获取sts",
+                "responses": {
+                    "0": {
+                        "description": "{json} JSONStruct"
+                    },
+                    "1005": {
+                        "description": "获取失败"
+                    }
+                }
+            }
+        },
+        "/other/encryptPwd": {
+            "get": {
+                "tags": [
+                    "other"
+                ],
+                "description": "密码加密",
+                "operationId": "OtherController.密码加密",
+                "parameters": [
+                    {
+                        "in": "query",
+                        "name": "pwd",
+                        "description": "密码",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "0": {
+                        "description": "{string} success"
+                    }
+                }
+            }
+        },
+        "/ping/": {
+            "get": {
+                "tags": [
+                    "ping"
+                ],
+                "description": "测试服务是否正常",
+                "operationId": "PingController.测试服务是否正常",
+                "responses": {
+                    "0": {
+                        "description": "{json} JSONStruct"
+                    }
+                }
+            }
+        },
+        "/tenant/": {
+            "get": {
+                "tags": [
+                    "tenant"
+                ],
+                "description": "租户列表",
+                "operationId": "TenantController.租户列表",
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "schema": {
+                            "$ref": "#/definitions/models.Tenant"
+                        }
+                    },
+                    "403": {
+                        "description": ":id is empty"
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "tenant"
+                ],
+                "description": "添加租户",
+                "operationId": "TenantController.添加租户",
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "name",
+                        "description": "租户名字",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "in": "path",
+                        "name": "is_free",
+                        "description": "是否免费：0免费1付费",
+                        "required": true,
+                        "type": "integer",
+                        "format": "int64"
+                    },
+                    {
+                        "in": "path",
+                        "name": "fee_type",
+                        "description": "付费类型：1包年2包季度3包月",
+                        "required": true,
+                        "type": "integer",
+                        "format": "int64"
+                    },
+                    {
+                        "in": "path",
+                        "name": "fee_period",
+                        "description": "租期时长",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "in": "path",
+                        "name": "start_time",
+                        "description": "开始时间",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "in": "path",
+                        "name": "end_time",
+                        "description": "结束时间",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "in": "path",
+                        "name": "rent_type",
+                        "description": "租借状态0正常1到期未付费2到期停",
+                        "required": true,
+                        "type": "integer",
+                        "format": "int64"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "schema": {
+                            "$ref": "#/definitions/models.Tenant"
+                        }
+                    },
+                    "403": {
+                        "description": ":id is empty"
+                    }
+                }
+            }
+        },
+        "/tenant/{id}": {
+            "get": {
+                "tags": [
+                    "tenant"
+                ],
+                "description": "租户详情",
+                "operationId": "TenantController.租户详情",
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "tenant_id",
+                        "description": "租户id",
+                        "required": true,
+                        "type": "integer",
+                        "format": "int64"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "schema": {
+                            "$ref": "#/definitions/models.Tenant"
+                        }
+                    },
+                    "403": {
+                        "description": ":id is empty"
+                    }
+                }
+            },
+            "put": {
+                "tags": [
+                    "tenant"
+                ],
+                "description": "编辑租户",
+                "operationId": "TenantController.编辑租户",
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "tenant_id",
+                        "description": "租户id",
+                        "required": true,
+                        "type": "integer",
+                        "format": "int64"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "schema": {
+                            "$ref": "#/definitions/models.Tenant"
+                        }
+                    },
+                    "403": {
+                        "description": ":id is empty"
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "tenant"
+                ],
+                "description": "删除租户",
+                "operationId": "TenantController.删除租户",
+                "parameters": [
+                    {
+                        "in": "path",
+                        "name": "tenant_id",
+                        "description": "租户id",
+                        "required": true,
+                        "type": "integer",
+                        "format": "int64"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "",
+                        "schema": {
+                            "$ref": "#/definitions/models.Tenant"
+                        }
+                    },
+                    "403": {
+                        "description": ":id is empty"
+                    }
+                }
+            }
+        },
+        "/version/getNew": {
+            "get": {
+                "tags": [
+                    "version"
+                ],
+                "description": "获取最新版本",
+                "operationId": "VersionController.获取最新版本",
+                "parameters": [
+                    {
+                        "in": "query",
+                        "name": "type",
+                        "description": "类型：1、H5；2、PC；3、安卓；4、iOS；5、iPad",
+                        "type": "integer",
+                        "format": "int32"
+                    },
+                    {
+                        "in": "query",
+                        "name": "app_type",
+                        "description": "app类型：1课件编辑器，2绘本编辑器",
+                        "type": "integer",
+                        "format": "int32"
+                    }
+                ],
+                "responses": {
+                    "0": {
+                        "description": "{json} JSONStruct"
+                    },
+                    "1005": {
+                        "description": "获取失败"
+                    }
+                }
+            }
+        },
+        "/version/save": {
+            "post": {
+                "tags": [
+                    "version"
+                ],
+                "description": "保存新版本",
+                "operationId": "VersionController.保存新版本",
+                "parameters": [
+                    {
+                        "in": "formData",
+                        "name": "type",
+                        "description": "类型：1、H5；2、PC；3、安卓；4、iOS；5、iPad",
+                        "required": true,
+                        "type": "integer",
+                        "format": "int32"
+                    },
+                    {
+                        "in": "formData",
+                        "name": "app_type",
+                        "description": "app类型：1课件编辑器，2绘本编辑器",
+                        "type": "integer",
+                        "format": "int32"
+                    },
+                    {
+                        "in": "formData",
+                        "name": "html_version",
+                        "description": "版本号",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "in": "formData",
+                        "name": "html_url",
+                        "description": "url地址",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "0": {
+                        "description": "{json} JSONStruct"
+                    },
+                    "1003": {
+                        "description": "保存失败"
+                    }
+                }
+            }
+        },
+        "/version/upload": {
+            "post": {
+                "tags": [
+                    "version"
+                ],
+                "description": "上传新版本",
+                "operationId": "VersionController.上传新版本",
+                "parameters": [
+                    {
+                        "in": "formData",
+                        "name": "type",
+                        "description": "类型：1、H5；2、PC；3、安卓；4、iOS；5、iPad",
+                        "required": true,
+                        "type": "integer",
+                        "format": "int32"
+                    },
+                    {
+                        "in": "formData",
+                        "name": "app_type",
+                        "description": "app类型：1课件编辑器，2绘本编辑器",
+                        "type": "integer",
+                        "format": "int32"
+                    },
+                    {
+                        "in": "formData",
+                        "name": "html_version",
+                        "description": "版本号",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "in": "formData",
+                        "name": "file",
+                        "description": "文件",
+                        "required": true,
+                        "type": "file"
+                    }
+                ],
+                "responses": {
+                    "0": {
+                        "description": "{json} JSONStruct"
+                    },
+                    "1003": {
+                        "description": "保存失败"
+                    }
+                }
+            }
+        },
+        "/weather/": {
+            "get": {
+                "tags": [
+                    "weather"
+                ],
+                "description": "获取最新天气",
+                "operationId": "WeatherController.获取最新天气",
+                "parameters": [
+                    {
+                        "in": "query",
+                        "name": "city_name",
+                        "description": "城市名称",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "0": {
+                        "description": "{json} JSONStruct"
+                    },
+                    "1002": {
+                        "description": "当前城市天气无数据"
+                    },
+                    "1005": {
+                        "description": "获取失败"
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "weather"
+                ],
+                "description": "保存天气",
+                "operationId": "WeatherController.保存天气",
+                "parameters": [
+                    {
+                        "in": "formData",
+                        "name": "data",
+                        "description": "天气数据",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/.json"
+                        }
+                    }
+                ],
+                "responses": {
+                    "0": {
+                        "description": "{json} JSONStruct"
+                    },
+                    "1003": {
+                        "description": "保存失败"
+                    }
+                }
+            }
+        },
+        "/weather/city": {
+            "get": {
+                "tags": [
+                    "weather"
+                ],
+                "description": "获取城市列表",
+                "operationId": "WeatherController.获取城市列表",
+                "parameters": [
+                    {
+                        "in": "query",
+                        "name": "parent_id",
+                        "description": "父级ID，0为省份，大于0为市县",
+                        "type": "integer",
+                        "format": "int64"
+                    }
+                ],
+                "responses": {
+                    "0": {
+                        "description": "{json} JSONStruct"
+                    },
+                    "1002": {
+                        "description": "父级ID不存在"
+                    },
+                    "1005": {
+                        "description": "获取失败"
+                    }
+                }
+            }
+        }
+    },
+    "definitions": {
+        ".Config": {
+            "type": "object"
+        },
+        ".download_url": {
+            "type": "object"
+        },
+        ".json": {
+            "type": "object"
+        },
+        ".name": {
+            "type": "object"
+        },
+        "models.ApplicationDownload": {
+            "title": "ApplicationDownload",
+            "type": "object",
+            "properties": {
+                "created_at": {
+                    "type": "string"
+                },
+                "download_url": {
+                    "type": "string"
+                },
+                "icon": {
+                    "type": "string"
+                },
+                "id": {
+                    "type": "integer",
+                    "format": "int64"
+                },
+                "name": {
+                    "type": "string"
+                },
+                "package_name": {
+                    "type": "string"
+                },
+                "size": {
+                    "type": "string"
+                },
+                "type": {
+                    "type": "integer",
+                    "format": "int64"
+                },
+                "updated_at": {
+                    "type": "string"
+                },
+                "version_code": {
+                    "type": "string"
+                }
+            }
+        },
+        "models.HotChcp": {
+            "title": "HotChcp",
+            "type": "object",
+            "properties": {
+                "android_identifier": {
+                    "type": "string"
+                },
+                "content_url": {
+                    "type": "string"
+                },
+                "id": {
+                    "type": "integer",
+                    "format": "int64"
+                },
+                "ios_identifier": {
+                    "type": "string"
+                },
+                "manifest": {
+                    "type": "string"
+                },
+                "min_native_interface": {
+                    "type": "integer",
+                    "format": "int64"
+                },
+                "name": {
+                    "type": "string"
+                },
+                "release": {
+                    "type": "string"
+                },
+                "update": {
+                    "type": "string"
+                }
+            }
+        },
+        "models.Notice": {
+            "title": "Notice",
+            "type": "object",
+            "properties": {
+                "content": {
+                    "type": "string"
+                },
+                "created_at": {
+                    "type": "string"
+                },
+                "group_type": {
+                    "type": "integer",
+                    "format": "int64"
+                },
+                "id": {
+                    "type": "integer",
+                    "format": "int64"
+                },
+                "meet_address": {
+                    "type": "string"
+                },
+                "meet_time": {
+                    "type": "string"
+                },
+                "name": {
+                    "type": "string"
+                },
+                "notice_type": {
+                    "type": "integer",
+                    "format": "int64"
+                },
+                "title": {
+                    "type": "string"
+                },
+                "type": {
+                    "type": "integer",
+                    "format": "int64"
+                },
+                "url": {
+                    "type": "string"
+                },
+                "url_id": {
+                    "type": "integer",
+                    "format": "int64"
+                }
+            }
+        },
+        "models.Tenant": {
+            "title": "Tenant",
+            "type": "object",
+            "properties": {
+                "created_at": {
+                    "type": "string",
+                    "format": "string"
+                },
+                "end_time": {
+                    "description": "结束时间",
+                    "type": "string",
+                    "format": "string"
+                },
+                "fee_period": {
+                    "description": "租期时长",
+                    "type": "string"
+                },
+                "fee_type": {
+                    "description": "付费类型：1包年2包季度3包月",
+                    "type": "integer",
+                    "format": "int64"
+                },
+                "is_free": {
+                    "description": "是否免费：0免费1付费",
+                    "type": "integer",
+                    "format": "int64"
+                },
+                "name": {
+                    "description": "名称",
+                    "type": "string"
+                },
+                "rent_type": {
+                    "description": "租借状态0正常1到期未付费2到期停",
+                    "type": "integer",
+                    "format": "int64"
+                },
+                "start_time": {
+                    "description": "开始时间",
+                    "type": "string",
+                    "format": "string"
+                },
+                "status": {
+                    "description": "状态：0:正常，1:删除",
+                    "type": "integer",
+                    "format": "int32"
+                },
+                "tenant_id": {
+                    "description": "编号",
+                    "type": "integer",
+                    "format": "int64"
+                },
+                "updated_at": {
+                    "type": "string",
+                    "format": "string"
+                }
+            }
+        }
+    },
+    "tags": [
+        {
+            "name": "oss",
+            "description": "oss\n"
+        },
+        {
+            "name": "app/upload",
+            "description": "Upload Base64\n"
+        },
+        {
+            "name": "ping",
+            "description": "ping\n"
+        },
+        {
+            "name": "tenant",
+            "description": "租户\n"
+        },
+        {
+            "name": "other",
+            "description": "other\n"
+        },
+        {
+            "name": "chcp",
+            "description": "热更\n"
+        },
+        {
+            "name": "notice",
+            "description": "NoticeController operations for Notice\n"
+        },
+        {
+            "name": "conf",
+            "description": "配置中心\n"
+        },
+        {
+            "name": "application_download",
+            "description": "应用下载\n"
+        }
+    ]
+}

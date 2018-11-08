@@ -1,0 +1,51 @@
+appname = onemore-service-go
+httpport = 80
+runmode = dev
+autorender = false
+copyrequestbody = true
+EnableDocs = true
+
+#mysql-default
+DB_ALIAS=default
+DB_CONNECTION = mysql
+DB_HOST = rm-2zeh3jfm7fzle8605.mysql.rds.aliyuncs.com
+DB_PORT = 3306
+DB_DATABASE = onemoredb
+DB_USERNAME = onemore
+DB_PASSWORD = Dea*7wjdha
+
+#redis
+REDIS_HOST = 172.17.65.184
+REDIS_PASSWORD = null
+REDIS_PORT = 6379
+
+#grpc
+OMS_SMS = http://oms-svc-prod:8081
+
+#短信
+SMS_URL=https://sms.yunpian.com/v2/sms/single_send.json
+SMS_API_KEY=2226a3b41621b89335a70933bb1840ad
+
+#oss
+OSS_BUCKET=yaolan-plat
+OSS_BUCKET_PICTUREBOOK=om-picturebook-product
+OSS_WEB_BUCKET=prod
+OSS_AREA=beijing
+OSS_PICTUREBOOK_SERVER=http://oss-cn-beijing.aliyuncs.com
+OSS_SERVER=http://oss-cn-beijing-internal.aliyuncs.com
+OSS_WEB_SERVER=http://oss-cn-beijing.aliyuncs.com
+OSS_RESOURCES_SERVE=http://resourceslibary.oss-cn-hangzhou.aliyuncs.com
+OSS_KEY_ID=LTAIlnFqBfSTLeWx
+OSS_KEY_SECRET=2Sp8pIDgrf43CYIw8azIiUmRdF4lm7
+EXPIRE_TIME = 60
+OSS_ANDROID_ACCESSKEYID = LTAIDUd4gCyDcbgY
+OSS_ANDROID_ACCESSKEYSECRET = SmZBA9bUS7SWLGuPIQOTnwqAebhVec
+OSS_ANDROID_ROLEARN = acs:ram::31176352:role/aliyunosstokengeneratorrole
+OSS_ANDROID_ROLESESSIONNAME = external-username
+OSS_ANDROID_DURATIONSECONDS = 3600
+
+#rpc-client
+ONE_MORE_USER_SERVER = "http://user-go-prod/rpc/user"
+ONE_MORE_OMS_SERVER = "http://oms-go-prod/rpc/oms"
+ONE_MORE_MQTT_SERVER = "http://msg-go-prod/rpc/publish"
+ONE_MORE_KG_SERVER = "http://kg-go-prod/rpc/kindergarten"
